@@ -21,6 +21,7 @@ public class PlayScreen implements Screen{
 	private KingsValley game;
 	private Explorer explorer;
 	private OrthographicCamera camera;
+	private float ratio, zoom=480f;
 	private ExplorerInputProcessor inputProcessor;
 	private ExplorerGestureListener gestureListener;
 	private InputMultiplexer multiplexer;
@@ -45,6 +46,13 @@ public class PlayScreen implements Screen{
 	public PlayScreen(KingsValley game)
 	{
 		this.game = game;
+		camera = new OrthographicCamera();
+		this.ratio = (float)Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight();
+		camera.setToOrtho(true, this.ratio * this.zoom, this.zoom);
+		camera.position.set(544/2f, 480/2f, 0f);
+		camera.update();
+		
+		
 		this.explorer = new Explorer(this.game, new Vector2(0f,0f), 1f);
 		//Inputprocessor zorgt voor alle inputdetectie
 		//-----------------------------------------------------
@@ -71,6 +79,7 @@ public class PlayScreen implements Screen{
 		this.explorer.Update(delta);
 		this.game.getBatch().setProjectionMatrix(camera.combined);
 		this.game.getBatch().begin();
+			this.level.Draw(delta);
 			this.explorer.Draw(delta);
 		this.game.getBatch().end();
 	}
@@ -81,20 +90,8 @@ public class PlayScreen implements Screen{
 	}
 
 	@Override
-	public void show() {		
-				
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		if (w == 1280 )
-		{
-			w = w/2f;
-			h = h/2f;
-		}
-		
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, w, h);
-		camera.position.set(0f, 0f, 0f);
-		camera.update();
+	public void show() 
+	{		
 		this.level = new Level(this.game, 0);
 	}
 
