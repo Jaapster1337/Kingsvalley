@@ -17,6 +17,7 @@ public class Level
 	private KingsValley game;
 	private String levelPath;
 	private ArrayList<String> lines;
+	private int height;
 	
 	//Constructor
 	public Level(KingsValley game, int levelIndex)
@@ -43,8 +44,9 @@ public class Level
 		{
 			lines.add(line);
 			line = reader.readLine();
-			//Gdx.app.log("line", line);	
+			Gdx.app.log("line", line);	
 		}
+		this.height = this.lines.size();
 				
 	}
 }

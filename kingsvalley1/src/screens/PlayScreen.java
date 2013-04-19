@@ -20,7 +20,6 @@ public class PlayScreen implements Screen{
 	//Fields
 	private KingsValley game;
 	private Explorer explorer;
-	private Image arrow_right, arrow_left;
 	private OrthographicCamera camera;
 	private ExplorerInputProcessor inputProcessor;
 	private ExplorerGestureListener gestureListener;
@@ -36,10 +35,6 @@ public class PlayScreen implements Screen{
 	public void setExplorer(Explorer explorer)
 	{
 		this.explorer = explorer;
-	}
-	public Image getArrowRight()
-	{
-		return this.arrow_right;
 	}
 	public void setMousePointer(Vector2 mousePointer)
 	{		
@@ -77,8 +72,6 @@ public class PlayScreen implements Screen{
 		this.game.getBatch().setProjectionMatrix(camera.combined);
 		this.game.getBatch().begin();
 			this.explorer.Draw(delta);
-			this.arrow_right.Draw(delta);
-			this.arrow_left.Draw(delta);
 		this.game.getBatch().end();
 	}
 
@@ -102,12 +95,6 @@ public class PlayScreen implements Screen{
 		camera.setToOrtho(false, w, h);
 		camera.position.set(0f, 0f, 0f);
 		camera.update();
-		this.arrow_right = new Image(this.game,
-									 new Vector2(w/2f - 64, -h/2f),
-									 "data/arrows/Arrow-Right.png");
-		this.arrow_left = new Image(this.game, 
-									new Vector2(-w/2f, -h/2f),
-									"data/arrows/Arrow-Left.png");
 		this.level = new Level(this.game, 0);
 	}
 
