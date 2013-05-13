@@ -42,7 +42,7 @@ public class KingsValley extends Game {
 	public void render() {		
 		Gdx.gl.glClearColor(0.06f, 0.06f, 0.06f, 1f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		this.logger.log();
+		//this.logger.log();
 		super.render();
 	}
 

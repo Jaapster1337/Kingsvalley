@@ -38,9 +38,9 @@ public class ExplorerJumpRight extends AnimatedSprite
 		float x = this.explorer.getPosition().x + this.explorer.getSpeed();
 		float y = (float)(this.a * Math.pow((double)(x - this.h), 2) + this.k);
 		
-		this.explorer.setPosition(new Vector2(x, -y));
-		Gdx.app.log("yrichting:", Float.toString(this.explorer.getPosition().y));
-		if ( this.explorer.getPosition().y < this.startY)
+		this.explorer.setPosition(new Vector2(x, y));
+		//Gdx.app.log("yrichting:", Float.toString(this.explorer.getPosition().y));
+		if ( this.explorer.getPosition().y > this.startY)
 		{
 			this.explorer.setPosition(new Vector2(x, this.startY));
 			this.explorer.setState(this.explorer.getWalkRight());

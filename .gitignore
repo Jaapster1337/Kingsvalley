@@ -1,1 +1,2 @@
-kingsvalley1/bin/*
+*/bin/*
+*.gwt-log

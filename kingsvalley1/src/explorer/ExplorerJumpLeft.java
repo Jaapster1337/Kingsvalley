@@ -38,8 +38,8 @@ public class ExplorerJumpLeft extends AnimatedSprite
 		float x = this.explorer.getPosition().x - this.explorer.getSpeed();
 		float y = this.a * (float)Math.pow((double)(x - this.h), 2) + this.k;
 		
-		this.explorer.setPosition(new Vector2(x, -y));
-		if ( this.explorer.getPosition().y < this.startY)
+		this.explorer.setPosition(new Vector2(x, y));
+		if ( this.explorer.getPosition().y > this.startY)
 		{
 			this.explorer.setPosition(new Vector2(x, this.startY));
 			this.explorer.setState(this.explorer.getWalkLeft());

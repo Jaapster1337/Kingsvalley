@@ -4,15 +4,12 @@ import animatedsprite.AnimatedSprite;
 
 public class ExplorerIdleLeft extends AnimatedSprite
 {
-	//Field
-	private Explorer explorer;
-	
+	//Field	
 	
 	//Constructor
 	public ExplorerIdleLeft(Explorer explorer)
 	{
 		super(explorer);
-		this.explorer = explorer;
 		this.i = 7;
 		this.flipX = true;
 	}

@@ -40,8 +40,8 @@ public class ExplorerIdleJumpLeft extends AnimatedSprite
 		float y = this.a * (float)Math.pow((double)(this.x - this.h), 2) + this.k;
 		float x = this.startX;
 		
-		this.explorer.setPosition(new Vector2(x, -y));
-		if ( this.explorer.getPosition().y < this.startY)
+		this.explorer.setPosition(new Vector2(x, y));
+		if ( this.explorer.getPosition().y > this.startY)
 		{
 			this.explorer.setPosition(new Vector2(this.startX, this.startY));
 			this.explorer.setState(this.explorer.getIdleLeft());

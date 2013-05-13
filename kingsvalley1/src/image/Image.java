@@ -1,6 +1,4 @@
 package image;
-
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
@@ -12,7 +10,6 @@ public class Image
 	private KingsValley game;
 	private Vector2 position;
 	private TextureRegion region;
-
 	
 	//Properties
 	public Vector2 getPosition()
@@ -20,8 +17,9 @@ public class Image
 		return this.position;
 	}
 	
+	
 	//Constructor
-	public Image(KingsValley game, Vector2 position, TextureRegion region )
+	public Image(KingsValley game, Vector2 position, TextureRegion region)
 	{
 		this.game = game;
 		this.position = position;
@@ -30,6 +28,15 @@ public class Image
 	
 	public void Draw(float delta)
 	{
-		this.game.getBatch().draw(this.region, this.position.x, this.position.y, 0f, 0f, 16f, 16f, 1f, 1f, 0f);
+		this.game.getBatch().draw(this.region,
+								  this.position.x,
+								  this.position.y,
+								  0f,
+								  0f,
+								  16f,
+								  16f,
+								  1f,
+								  1f,
+								  0f);
 	}	
 }

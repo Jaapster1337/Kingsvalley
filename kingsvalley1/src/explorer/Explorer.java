@@ -1,8 +1,5 @@
 package explorer;
-import inputprocessor.ExplorerInputProcessor;
 import animatedsprite.AnimatedSprite;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import nl.am1a.kingsvalley1.KingsValley;

@@ -1,4 +1,4 @@
-package bricks;
+package stairsRight;
 
 import nl.am1a.kingsvalley1.KingsValley;
 
@@ -7,14 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 
 import image.Image;
 
-
-
-public class Brick extends Image
+public class StepRight extends Image
 {
-	//Field
+	//Fields
 	private char character;
 	
-	//Properties
 	public char getCharacter() {
 		return character;
 	}
@@ -22,14 +19,12 @@ public class Brick extends Image
 		this.character = character;
 	}
 
-	//Constructor
-	public Brick(KingsValley game, Vector2 position, TextureRegion region, char character)
+	public StepRight(KingsValley game, Vector2 position, TextureRegion region, char character) 
 	{
 		super(game, position, region);
 		this.setCharacter(character);
 	}
 	
-	//Draw
 	public void Draw(float delta)
 	{
 		super.Draw(delta);

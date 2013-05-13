@@ -1,21 +1,22 @@
 package inputprocessor;
 
 
-import screens.PlayScreen;
-
+import level.Level;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
+import explorer.Explorer;
+
 public class ExplorerInputProcessor implements InputProcessor
 {
 	//Fields
-	private PlayScreen screen;	
+	private Explorer explorer;
 	
 	//Constructor
-	public ExplorerInputProcessor(PlayScreen screen)
+	public ExplorerInputProcessor(Level level)
 	{
-		this.screen = screen;
+		this.explorer = level.getExplorer();
 	}
 
 	@Override
@@ -24,22 +25,22 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				Gdx.app.log("links", this.screen.getExplorer().getState().toString());
-				Gdx.app.log("rechts", this.screen.getExplorer().getIdleLeft().toString());
-				Gdx.app.log("gelijk", "" + this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()));
-				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleRight()) ||
-					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()) ||
-					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkLeft()))
+				Gdx.app.log("links", this.explorer.getState().toString());
+				Gdx.app.log("rechts", this.explorer.getIdleLeft().toString());
+				Gdx.app.log("gelijk", "" + this.explorer.getState().equals(this.explorer.getIdleLeft()));
+				if (this.explorer.getState().equals(this.explorer.getIdleRight()) ||
+					this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
+					this.explorer.getState().equals(this.explorer.getWalkLeft()))
 				{
-					this.screen.getExplorer().setState(this.screen.getExplorer().getWalkRight());
+					this.explorer.setState(this.explorer.getWalkRight());
 				}
 				break;	
 			case Keys.LEFT:
-				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()) ||
-					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleRight())||
-					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkRight()))
+				if (this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
+					this.explorer.getState().equals(this.explorer.getIdleRight())||
+					this.explorer.getState().equals(this.explorer.getWalkRight()))
 				{
-					this.screen.getExplorer().setState(this.screen.getExplorer().getWalkLeft());
+					this.explorer.setState(this.explorer.getWalkLeft());
 				}
 				break;	
 		}	
@@ -52,15 +53,15 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkRight()))
+				if (this.explorer.getState().equals(this.explorer.getWalkRight()))
 				{
-					this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
+					this.explorer.setState(this.explorer.getIdleRight());
 				}
 				break;
 			case Keys.LEFT:
-				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkLeft()))
+				if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
 				{
-					this.screen.getExplorer().setState(this.screen.getExplorer().getIdleLeft());
+					this.explorer.setState(this.explorer.getIdleLeft());
 				}
 				break;
 		}	
@@ -81,11 +82,11 @@ public class ExplorerInputProcessor implements InputProcessor
 		int y = 600;
 		if ( screenX > x_right  && screenX < x_right + 100  && screenY > y && screenY < y + 100)
 		{
-			this.screen.getExplorer().setState(this.screen.getExplorer().getWalkRight());
+			this.explorer.setState(this.explorer.getWalkRight());
 		}
 		else if (screenX > x_left && screenX < x_left + 100 && screenY > y && screenY < y + 100)
 		{
-			this.screen.getExplorer().setState(this.screen.getExplorer().getWalkLeft());
+			this.explorer.setState(this.explorer.getWalkLeft());
 		}
 		return false;
 	}
@@ -98,11 +99,11 @@ public class ExplorerInputProcessor implements InputProcessor
 		int y = 600;
 		if ( screenX > x_right  && screenX < x_right + 100  && screenY > y && screenY < y + 100)
 		{
-			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
+			this.explorer.setState(this.explorer.getIdleRight());
 		}
 		else if (screenX > x_left && screenX < x_left + 100 && screenY > y && screenY < y + 100)
 		{
-			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleLeft());
+			this.explorer.setState(this.explorer.getIdleLeft());
 		}
 		return false;
 	}
@@ -114,7 +115,7 @@ public class ExplorerInputProcessor implements InputProcessor
 		int y = 600;
 		if ( screenX > x  && screenX < x + 10  && screenY > y && screenY < y + 100)
 		{
-			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
+			this.explorer.setState(this.explorer.getIdleRight());
 		}
 		return false;
 	}

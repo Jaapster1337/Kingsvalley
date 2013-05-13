@@ -1,6 +1,6 @@
 package gesturelistener;
 
-import screens.PlayScreen;
+import level.Level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
@@ -12,16 +12,14 @@ import explorer.Explorer;
 public class ExplorerGestureListener implements GestureListener
 {
 	//Fields
-	private PlayScreen screen;
 	private Explorer explorer;
 	private Vector2 flingVector;
 	
 	
 	//Constructor
-	public ExplorerGestureListener(PlayScreen screen)
+	public ExplorerGestureListener(Level level)
 	{
-		this.screen = screen;
-		this.explorer = screen.getExplorer();
+		this.explorer = level.getExplorer();
 	}
 
 	@Override
@@ -63,7 +61,7 @@ public class ExplorerGestureListener implements GestureListener
 			{
 				this.explorer.setState(this.explorer.getWalkRight());
 			}
-			else if (this.flingVector.angle() >= 300 && this.flingVector.angle() <= 360)
+			else if (this.flingVector.angle() >= 300 && this.flingVector.angle() <= 330)
 			{
 				this.explorer.getJumpRight().Initialize();
 				this.explorer.setState(this.explorer.getJumpRight());

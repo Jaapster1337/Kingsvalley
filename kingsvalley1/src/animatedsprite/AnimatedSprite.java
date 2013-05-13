@@ -43,7 +43,7 @@ public class AnimatedSprite {
 				  18,
 				  32,
 				  this.flipX,
-				  false);
+				  true);
 	}
 
 }
