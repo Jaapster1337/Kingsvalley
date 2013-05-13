@@ -19,6 +19,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import explorer.Explorer;
+
 import nl.am1a.kingsvalley1.KingsValley;
 
 public class Level
@@ -31,6 +33,7 @@ public class Level
 	private Texture spriteSheet;
 	private Map<String, TextureRegion> region;
 	private Brick bricks[][];
+	private Explorer explorer;
 	
 	//Constructor
 	public Level(KingsValley game, int levelIndex)
@@ -102,10 +105,18 @@ public class Level
 			return new Brick(this.game, new Vector2(i,j), this.region.get("fundament"), '2');
 		case '.':
 			return new Brick(this.game, new Vector2(i,j), this.region.get("brick_transparent"), '.');
+		case '+' :
+			this.explorer = new Explorer(this.game, new Vector2(i,j), 1f);
+			return new Brick(game, new Vector2(i,j), this.region.get("brick_transparent"),'+');
 		default:
 			return new Brick(this.game, new Vector2(i,j), this.region.get("brick_transparent"), '.');
-		}
+		}	
 		
+	}
+	
+	public void Update(float delta)
+	{
+		this.explorer.Update(delta);
 	}
 	
 	public void Draw(float delta)
