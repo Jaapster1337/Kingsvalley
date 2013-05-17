@@ -3,7 +3,7 @@ package inputprocessor;
 
 import level.Level;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Gdx;
+//import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 import explorer.Explorer;
@@ -25,9 +25,6 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				Gdx.app.log("links", this.explorer.getState().toString());
-				Gdx.app.log("rechts", this.explorer.getIdleLeft().toString());
-				Gdx.app.log("gelijk", "" + this.explorer.getState().equals(this.explorer.getIdleLeft()));
 				if (this.explorer.getState().equals(this.explorer.getIdleRight()) ||
 					this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
 					this.explorer.getState().equals(this.explorer.getWalkLeft()))
@@ -42,7 +39,18 @@ public class ExplorerInputProcessor implements InputProcessor
 				{
 					this.explorer.setState(this.explorer.getWalkLeft());
 				}
-				break;	
+				break;
+			case Keys.SPACE:
+				if (this.explorer.getState().equals(this.explorer.getWalkRight()))
+				{
+					this.explorer.getJumpRight().Initialize();
+					this.explorer.setState(this.explorer.getJumpRight());
+				}
+				else if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
+				{
+					this.explorer.getJumpLeft().Initialize();
+					this.explorer.setState(this.explorer.getJumpLeft());
+				}
 		}	
 		return false;
 	}

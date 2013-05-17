@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+
+import stairsLeft.StairsLeft;
+import stairsRight.StairsRight;
+//import java.util.Map.Entry;
+//import java.util.Set;
 
 import bricks.Brick;
 
@@ -41,6 +44,8 @@ public class Level
 	private ExplorerInputProcessor inputProcessor;
 	private ExplorerGestureListener gestureListener;
 	private InputMultiplexer multiplexer;
+	private ArrayList<StairsRight> stairsRight;
+	private ArrayList<StairsLeft> stairsLeft;
 	
 	//Properties
 	public Explorer getExplorer() {
@@ -61,6 +66,16 @@ public class Level
 		} catch (IOException e) {
 			e.getMessage();
 		}
+		
+		//Stop alle rechtertrappen in een arraylist object
+		this.stairsRight = new ArrayList<StairsRight>();
+		
+		this.DetectStairsRight();
+		
+		//Stop alle ltrappen in een arraylist object
+		this.stairsLeft = new ArrayList<StairsLeft>();
+		
+		this.DetectStairsLeft();
 		
 		//Inputprocessor zorgt voor alle inputdetectie
 		//-----------------------------------------------------
@@ -91,6 +106,13 @@ public class Level
 		this.region.put("brick_transparent", new TextureRegion(this.spriteSheet, 0, 16, 16, 16));
 		this.region.put("traptopright01", new TextureRegion(this.spriteSheet, 100, 16, 16, 16));
 		this.region.put("traptopleft01", new TextureRegion(this.spriteSheet, 68, 16, 16, 16));
+		this.region.put("trapRight01", new TextureRegion(this.spriteSheet, 100, 0, 16, 16));
+		this.region.put("trapRight02", new TextureRegion(this.spriteSheet, 116, 0, 16,16));
+		this.region.put("trapTopRight02", new TextureRegion(this.spriteSheet, 116, 16, 16, 16));
+		this.region.put("trapLeft01", new TextureRegion(this.spriteSheet, 68, 0, 16, 16));
+		this.region.put("trapLefto2", new TextureRegion(this.spriteSheet, 84, 0, 16, 16));
+		this.region.put("traptopleft02", new TextureRegion(this.spriteSheet,84, 16, 16, 16));
+		
 		
 		//Alle stenen omdraaien
 		for (Map.Entry<String, TextureRegion> e : this.region.entrySet())
@@ -152,6 +174,66 @@ public class Level
 		
 	}
 	
+	private void DetectStairsRight()
+	{
+		for (int i = 0; i < this.height; i++)
+		{
+			for (int j = 0; j < this.width; j++)
+			{
+				if (this.bricks[j][i].getCharacter() == 's')
+				{
+					int amountOfSteps = 0;
+					int horizontal = j + 1;
+					for (int k = (i+1); k < this.height; k++)
+					{
+						horizontal--;
+						if (this.bricks[horizontal][k].getCharacter() == '1')
+						{
+							amountOfSteps = k - i - 1;
+							break;
+						}
+					}
+					this.stairsRight.add(new StairsRight(this.game,
+														 new Vector2(j * 16, i * 16),
+														 amountOfSteps,
+														 this.region.get("trapRight01"),
+														 this.region.get("trapRight02"),
+														 this.region.get("trapTopRight02")));
+				}
+			}
+		}
+	}
+		
+		private void DetectStairsLeft()
+		{
+			for (int i = 0; i < this.height; i++)
+			{
+				for (int j = 0; j < this.width; j++)
+				{
+					if (this.bricks[j][i].getCharacter() == 'x')
+					{
+						int amountOfSteps = 0;
+						int horizontal = j;
+						for (int k = (i+1); k < this.height; k++)
+						{
+							horizontal++;
+							if (this.bricks[horizontal][k].getCharacter() == '1')
+							{
+								amountOfSteps = k - i - 1;
+								break;
+							}
+						}
+						this.stairsLeft.add(new StairsLeft(this.game,
+															 new Vector2(j * 16, i * 16),
+															 amountOfSteps,
+															 this.region.get("trapLeft01"),
+															 this.region.get("trapLeft02"),
+															 this.region.get("traptopleft02")));
+					}
+				}
+			}
+	}
+	
 	public void Update(float delta)
 	{
 		this.explorer.Update(delta);
@@ -166,6 +248,16 @@ public class Level
 			{
 				this.bricks[j][i].Draw(delta);
 			}				
+		}
+		
+		for (StairsRight stairsRight : this.stairsRight)
+		{
+			stairsRight.Draw(delta);
+		}
+		
+		for (StairsLeft stairsLeft : this.stairsLeft)
+		{
+			stairsLeft.Draw(delta);
 		}
 		
 		this.explorer.Draw(delta);

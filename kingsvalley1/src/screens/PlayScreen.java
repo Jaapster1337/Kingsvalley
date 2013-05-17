@@ -1,15 +1,15 @@
 package screens;
 import level.Level;
-import gesturelistener.ExplorerGestureListener;
-import inputprocessor.ExplorerInputProcessor;
+//import gesturelistener.ExplorerGestureListener;
+//import inputprocessor.ExplorerInputProcessor;
 import nl.am1a.kingsvalley1.KingsValley;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
+//import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.input.GestureDetector;
+//import com.badlogic.gdx.input.GestureDetector;
 
 public class PlayScreen implements Screen{
 
